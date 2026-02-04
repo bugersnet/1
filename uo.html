@@ -1,0 +1,456 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catholic Universal / ആഗോള കത്തോലിക സഭ</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --gold: #D4AF37;
+            --red: #7E191B; 
+            --blue: #005085;
+            --bg: #f8f9fa;
+            --text: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, 'Malgun Gothic', Verdana, sans-serif; /* Added fonts for Malayalam support */
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--red), #4a0d0e);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--gold);
+            position: relative;
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { font-style: italic; opacity: 0.9; margin-top: 10px; font-size: 1.1rem; }
+
+        /* LANGUAGE SWITCHER BUTTON */
+        .lang-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: var(--red);
+            border: 2px solid var(--gold);
+            padding: 8px 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .lang-btn:hover { background: var(--gold); color: #000; }
+
+        /* NAV */
+        nav {
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 5px 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        nav a:hover { color: var(--gold); }
+
+        /* LAYOUT */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: white;
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--gold);
+        }
+
+        h2 { color: var(--red); border-bottom: 2px solid #eee; padding-bottom: 10px; }
+
+        /* CARDS */
+        .grid-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover { transform: translateY(-3px); border-color: var(--gold); }
+        .card h3 { margin: 0 0 10px 0; color: #222; }
+        
+        .tag { 
+            background: #fff3cd; 
+            color: #856404;
+            padding: 3px 10px; 
+            border-radius: 15px; 
+            font-size: 0.8rem; 
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: var(--red);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .btn:hover { background-color: #5c1214; }
+        .btn-blue { background-color: var(--blue); }
+
+        /* NEWS */
+        .news-item {
+            border-left: 4px solid var(--gold);
+            padding: 15px;
+            background: #fdfdfd;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #888;
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <button class="lang-btn" onclick="toggleLanguage()">മലയാളം / English</button>
+    <h1 id="site-title">The Catholic Universal</h1>
+    <p id="site-subtitle">Scripture · Tradition · Saints · News</p>
+</header>
+
+<nav>
+    <a href="#bible" id="nav-bible">Bible</a>
+    <a href="#saints" id="nav-saints">Saints</a>
+    <a href="#miracles" id="nav-miracles">Miracles</a>
+    <a href="#news" id="nav-news">News</a>
+</nav>
+
+<div class="container">
+
+    <section id="bible">
+        <h2 id="bible-header">✝️ The Holy Scripture</h2>
+        <p id="bible-desc">Read the Daily Mass Readings or the full Bible.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="https://bible.usccb.org/daily-bible-reading" target="_blank" class="btn btn-blue" style="flex:1;" id="btn-readings">📅 Today's Readings</a>
+            <a href="https://bible.usccb.org/bible" target="_blank" class="btn" style="flex:1;" id="btn-bible">📖 Full Bible</a>
+            <a href="https://www.vatican.va/archive/ENG0015/_INDEX.HTM" target="_blank" class="btn" style="flex:1;" id="btn-catechism">📜 Catechism</a>
+        </div>
+    </section>
+
+    <section id="saints">
+        <h2 id="saints-header">🌍 Saints of the World</h2>
+        <p id="saints-desc">A directory of holy men and women.</p>
+        
+        <div class="grid-display" id="saints-display">
+            </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="https://www.catholic.org/saints/" target="_blank" class="btn btn-blue" id="btn-search-all">Search Full Database</a>
+        </div>
+    </section>
+
+    <section id="miracles">
+        <h2 id="miracles-header">✨ Approved Miracles</h2>
+        <div class="grid-display" id="miracles-display">
+            </div>
+    </section>
+
+    <section id="news">
+        <h2 id="news-header">📰 Live World News</h2>
+        <div id="news-status" style="margin-bottom: 15px; font-size: 0.9rem; color: #555;">Initializing News Engine...</div>
+        <div id="news-container"></div>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2024 The Catholic Universal.</p>
+    <p><em>"Go forth and make disciples of all nations."</em></p>
+</footer>
+
+<script>
+    /* ==============================================
+       1. DATA & TRANSLATIONS / ഡാറ്റയും വിവർത്തനവും
+    ============================================== */
+    
+    let currentLang = 'en'; // Default language (English)
+    const API_KEY = "cb94f6d26631457f9144f70a372a2aab";
+
+    // UI TRANSLATIONS
+    const uiText = {
+        en: {
+            title: "The Catholic Universal",
+            subtitle: "Scripture · Tradition · Saints · News",
+            navBible: "Bible", navSaints: "Saints", navMiracles: "Miracles", navNews: "News",
+            bibleHead: "✝️ The Holy Scripture",
+            bibleDesc: "Read the Daily Mass Readings or the full Bible.",
+            btnReadings: "📅 Today's Readings", btnBible: "📖 Full Bible", btnCat: "📜 Catechism",
+            saintsHead: "🌍 Saints of the World",
+            saintsDesc: "A directory of holy men and women.",
+            btnSearchAll: "Search Full Database",
+            miraclesHead: "✨ Approved Miracles",
+            newsHead: "📰 Live World News",
+            btnBio: "Read Biography",
+            btnStory: "Read Story",
+            btnNews: "Read Article"
+        },
+        ml: {
+            title: "ആഗോള കത്തോലിക സഭ",
+            subtitle: "വിശുദ്ധ ഗ്രന്ഥം · പാരമ്പര്യം · വിശുദ്ധർ · വാർത്തകൾ",
+            navBible: "ബൈബിൾ", navSaints: "വിശുദ്ധർ", navMiracles: "അത്ഭുതങ്ങൾ", navNews: "വാർത്തകൾ",
+            bibleHead: "✝️ വിശുദ്ധ ഗ്രന്ഥം",
+            bibleDesc: "ദിവസത്തെ വായനകളും ബൈബിളും ഇവിടെ വായിക്കാം.",
+            btnReadings: "📅 ഇന്നത്തെ വായന", btnBible: "📖 സമ്പൂർണ്ണ ബൈബിൾ", btnCat: "📜 മതബോധനഗ്രന്ഥം",
+            saintsHead: "🌍 ലോകമെമ്പാടുമുള്ള വിശുദ്ധർ",
+            saintsDesc: "വിശുദ്ധരായ സ്ത്രീപുരുഷന്മാരുടെ വിവരങ്ങൾ.",
+            btnSearchAll: "കൂടുതൽ വിശുദ്ധരെ തിരയുക",
+            miraclesHead: "✨ അംഗീകൃത അത്ഭുതങ്ങൾ",
+            newsHead: "📰 ലോക വാർത്തകൾ (Live)",
+            btnBio: "ജീവചരിത്രം വായിക്കുക",
+            btnStory: "കൂടുതൽ വായിക്കുക",
+            btnNews: "വാർത്ത വായിക്കുക"
+        }
+    };
+
+    // SAINTS DATA (Bilingual)
+    const saintsData = [
+        // KERALA & INDIA SAINTS
+        { 
+            name: "St. Thomas the Apostle", name_ml: "വിശുദ്ധ തോമാശ്ലീഹാ",
+            patronage: "India / Architects", patronage_ml: "ഇന്ത്യ / ശില്പികൾ",
+            bio: "The Apostle who brought the faith to India in AD 52. Martyred in Chennai.", 
+            bio_ml: "എ.ഡി 52-ൽ ഇന്ത്യയിൽ ക്രൈസ്തവ വിശ്വാസം കൊണ്ടുവന്ന അപ്പസ്തോലൻ. ചെന്നൈയിൽ രക്തസാക്ഷിത്വം വരിച്ചു.",
+            link: "https://en.wikipedia.org/wiki/Thomas_the_Apostle" 
+        },
+        { 
+            name: "St. Alphonsa", name_ml: "വിശുദ്ധ അൽഫോൻസാ",
+            patronage: "Suffering / Sick", patronage_ml: "രോഗികൾ / കഷ്ടപ്പെടുന്നവർ",
+            bio: "First woman of Indian origin to be canonized as a saint. Known for suffering with joy.", 
+            bio_ml: "ഭാരതത്തിൽ നിന്നുള്ള ആദ്യത്തെ വനിതാ വിശുദ്ധ. സഹനങ്ങൾ സന്തോഷത്തോടെ ഏറ്റുവാങ്ങിയ പുണ്യാത്മാവ്.",
+            link: "https://en.wikipedia.org/wiki/Alphonsa_of_the_Immaculate_Conception" 
+        },
+        { 
+            name: "St. Kuriakose Elias Chavara", name_ml: "വിശുദ്ധ ചാവറ കുര്യാക്കോസ്",
+            patronage: "Press / Families", patronage_ml: "മാധ്യമങ്ങൾ / കുടുംബങ്ങൾ",
+            bio: "Social reformer and founder of the CMI congregation in Kerala.", 
+            bio_ml: "കേരളത്തിലെ സാമൂഹിക പരിഷ്കർത്താവും സി.എം.ഐ സഭയുടെ സ്ഥാപകനും.",
+            link: "https://en.wikipedia.org/wiki/Kuriakose_Elias_Chavara" 
+        },
+        // GLOBAL SAINTS
+        { 
+            name: "Blessed Virgin Mary", name_ml: "പരിശുദ്ധ കന്യകാമറിയം",
+            patronage: "Mother of God", patronage_ml: "ദൈവമാതാവ്",
+            bio: "The Queen of all Saints and Mother of the Church.", 
+            bio_ml: "വിശുദ്ധരുടെ രാജ്ഞിയും തിരുസഭയുടെ മാതാവും.",
+            link: "https://en.wikipedia.org/wiki/Mary,_mother_of_Jesus" 
+        },
+        { 
+            name: "St. Joseph", name_ml: "വിശുദ്ധ യൗസേപ്പിതാവ്",
+            patronage: "Workers / Fathers", patronage_ml: "തൊഴിലാളികൾ / പിതാക്കന്മാർ",
+            bio: "Foster father of Jesus and patron of the Universal Church.", 
+            bio_ml: "യേശുവിന്റെ വളർത്തച്ഛനും തിരുസഭയുടെ മധ്യസ്ഥനും.",
+            link: "https://en.wikipedia.org/wiki/Saint_Joseph" 
+        },
+        { 
+            name: "St. Mother Teresa", name_ml: "വിശുദ്ധ മദർ തെരേസ",
+            patronage: "The Poor", patronage_ml: "പാവപ്പെട്ടവർ",
+            bio: "Founder of Missionaries of Charity, served the poorest of the poor.", 
+            bio_ml: "മിഷണറീസ് ഓഫ് ചാരിറ്റിയുടെ സ്ഥാപക, കൊൽക്കത്തയിലെ പാവങ്ങളെ സേവിച്ചു.",
+            link: "https://en.wikipedia.org/wiki/Mother_Teresa" 
+        },
+        { 
+            name: "St. Anthony of Padua", name_ml: "വിശുദ്ധ അന്തോണീസ്",
+            patronage: "Lost Things", patronage_ml: "കാണാതായ വസ്തുക്കൾ",
+            bio: "Franciscan priest known for powerful miracles.", 
+            bio_ml: "അത്ഭുത പ്രവർത്തകനായ ഫ്രാൻസിസ്കൻ വൈദികൻ.",
+            link: "https://en.wikipedia.org/wiki/Anthony_of_Padua" 
+        }
+    ];
+
+    const miraclesData = [
+        { 
+            title: "Miracle of Lanciano", title_ml: "ലാൻചിയാനോയിലെ അത്ഭുതം",
+            type: "Eucharistic", type_ml: "ദിവ്യകാരുണ്യം",
+            desc: "Bread turned into real Heart Tissue (AB blood).", 
+            desc_ml: "ദിവ്യബലി മധ്യേ അപ്പം യഥാർത്ഥ ഹൃദയ പേശിയായി മാറി.",
+            link: "https://en.wikipedia.org/wiki/Miracle_of_Lanciano" 
+        },
+        { 
+            title: "Our Lady of Fatima", title_ml: "ഫാത്തിമായിലെ മാതാവ്",
+            type: "Apparition", type_ml: "ദർശനം",
+            desc: "The Miracle of the Sun witnessed by 70,000 people.", 
+            desc_ml: "എഴുപതിനായിരത്തോളം ആളുകൾ സൂര്യന്റെ അത്ഭുതം ദർശിച്ചു.",
+            link: "https://en.wikipedia.org/wiki/Our_Lady_of_F%C3%A1tima" 
+        }
+    ];
+
+    /* ==============================================
+       2. FUNCTIONS / പ്രവർത്തനങ്ങൾ
+    ============================================== */
+
+    function toggleLanguage() {
+        currentLang = (currentLang === 'en') ? 'ml' : 'en';
+        updateUI();
+        loadContent(); // Reload lists in new language
+    }
+
+    function updateUI() {
+        const t = uiText[currentLang];
+        document.getElementById('site-title').innerText = t.title;
+        document.getElementById('site-subtitle').innerText = t.subtitle;
+        
+        document.getElementById('nav-bible').innerText = t.navBible;
+        document.getElementById('nav-saints').innerText = t.navSaints;
+        document.getElementById('nav-miracles').innerText = t.navMiracles;
+        document.getElementById('nav-news').innerText = t.navNews;
+
+        document.getElementById('bible-header').innerText = t.bibleHead;
+        document.getElementById('bible-desc').innerText = t.bibleDesc;
+        document.getElementById('btn-readings').innerText = t.btnReadings;
+        document.getElementById('btn-bible').innerText = t.btnBible;
+        document.getElementById('btn-catechism').innerText = t.btnCat;
+
+        document.getElementById('saints-header').innerText = t.saintsHead;
+        document.getElementById('saints-desc').innerText = t.saintsDesc;
+        document.getElementById('btn-search-all').innerText = t.btnSearchAll;
+
+        document.getElementById('miracles-header').innerText = t.miraclesHead;
+        document.getElementById('news-header').innerText = t.newsHead;
+    }
+
+    function loadContent() {
+        // Load Saints
+        const saintsContainer = document.getElementById('saints-display');
+        saintsContainer.innerHTML = "";
+        
+        saintsData.forEach(saint => {
+            // Choose English or Malayalam data based on currentLang
+            let name = (currentLang === 'ml') ? saint.name_ml : saint.name;
+            let bio = (currentLang === 'ml') ? saint.bio_ml : saint.bio;
+            let patronage = (currentLang === 'ml') ? saint.patronage_ml : saint.patronage;
+            let btnText = uiText[currentLang].btnBio;
+
+            saintsContainer.innerHTML += `
+                <div class="card">
+                    <div>
+                        <h3>${name}</h3>
+                        <span class="tag">${patronage}</span>
+                        <p>${bio}</p>
+                    </div>
+                    <a href="${saint.link}" target="_blank" class="btn">${btnText}</a>
+                </div>
+            `;
+        });
+
+        // Load Miracles
+        const miraclesContainer = document.getElementById('miracles-display');
+        miraclesContainer.innerHTML = "";
+        
+        miraclesData.forEach(m => {
+            let title = (currentLang === 'ml') ? m.title_ml : m.title;
+            let type = (currentLang === 'ml') ? m.type_ml : m.type;
+            let desc = (currentLang === 'ml') ? m.desc_ml : m.desc;
+            let btnText = uiText[currentLang].btnStory;
+
+            miraclesContainer.innerHTML += `
+                <div class="card">
+                    <div>
+                        <h3>${title}</h3>
+                        <span class="tag">${type}</span>
+                        <p>${desc}</p>
+                    </div>
+                    <a href="${m.link}" target="_blank" class="btn">${btnText}</a>
+                </div>
+            `;
+        });
+    }
+
+    function fetchNews() {
+        const newsContainer = document.getElementById('news-container');
+        const statusMsg = document.getElementById('news-status');
+        
+        // We use US/Global news for better reliability, headlines remain English
+        fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`)
+            .then(res => res.json())
+            .then(data => {
+                statusMsg.style.display = 'none';
+                newsContainer.innerHTML = "";
+                
+                if(data.status === "ok") {
+                    data.articles.forEach(article => {
+                        if (article.title && article.url) {
+                            let btnText = uiText[currentLang].btnNews; // "Read Article" or "വാർത്ത വായിക്കുക"
+                            newsContainer.innerHTML += `
+                                <div class="news-item">
+                                    <div style="font-size:0.8rem;color:#666;">${article.source.name}</div>
+                                    <h3>${article.title}</h3>
+                                    <a href="${article.url}" target="_blank" class="btn">${btnText}</a>
+                                </div>
+                            `;
+                        }
+                    });
+                }
+            })
+            .catch(err => {
+                statusMsg.innerText = "Error loading news / വാർത്തകൾ ലഭ്യമാകുന്നില്ല.";
+            });
+    }
+
+    // Initialize
+    window.onload = () => {
+        updateUI(); // Set initial text
+        loadContent(); // Load content
+        fetchNews(); // Start news
+    };
+</script>
+
+</body>
+</html>
